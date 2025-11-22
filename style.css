@@ -1,0 +1,409 @@
+/* ========================================
+   RESET & BASE STYLES
+   ======================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Color Palette */
+    --primary-bg: hsla(240, 20%, 10%, 1);
+    --secondary-bg: hsla(240, 15%, 15%, 1);
+    --card-bg: hsla(240, 20%, 18%, 0.8);
+    --accent-purple: hsla(270, 70%, 60%, 1);
+    --accent-cyan: hsla(180, 70%, 50%, 1);
+    --accent-pink: hsla(330, 70%, 60%, 1);
+    --text-primary: hsla(0, 0%, 95%, 1);
+    --text-secondary: hsla(0, 0%, 70%, 1);
+    --glow-color: hsla(180, 100%, 50%, 0.5);
+
+    /* Shadows */
+    --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.5);
+    --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.4);
+    --glow-shadow: 0 0 20px var(--glow-color);
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg,
+            hsla(240, 30%, 8%, 1) 0%,
+            hsla(260, 40%, 15%, 1) 50%,
+            hsla(280, 30%, 10%, 1) 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-primary);
+    overflow: hidden;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        radial-gradient(circle at 20% 30%, hsla(270, 70%, 60%, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, hsla(180, 70%, 50%, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+    animation: pulse 8s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 0.3;
+    }
+
+    50% {
+        opacity: 0.6;
+    }
+}
+
+/* ========================================
+   CONTAINER & LAYOUT
+   ======================================== */
+.container {
+    width: 100%;
+    max-width: 1400px;
+    padding: 20px;
+}
+
+.game-wrapper {
+    width: 100%;
+    position: relative;
+}
+
+.back-btn {
+    display: inline-block;
+    font-family: 'Orbitron', sans-serif;
+    color: var(--accent-cyan);
+    text-decoration: none;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    border: 2px solid var(--accent-cyan);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+    background: var(--accent-cyan);
+    color: var(--primary-bg);
+    box-shadow: 0 0 20px var(--accent-cyan);
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.game-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 4rem;
+    font-weight: 900;
+    letter-spacing: 0.3em;
+    margin: 0;
+}
+
+.glow {
+    background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple), var(--accent-pink));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 30px var(--glow-color);
+    animation: glow-pulse 2s ease-in-out infinite;
+}
+
+@keyframes glow-pulse {
+
+    0%,
+    100% {
+        filter: brightness(1);
+    }
+
+    50% {
+        filter: brightness(1.3);
+    }
+}
+
+/* ========================================
+   GAME AREA LAYOUT
+   ======================================== */
+.game-area {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.main-game {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+}
+
+#tetris-canvas {
+    display: block;
+    background: linear-gradient(180deg,
+            hsla(240, 25%, 12%, 1) 0%,
+            hsla(240, 20%, 8%, 1) 100%);
+    border: 3px solid hsla(180, 70%, 50%, 0.3);
+    border-radius: 12px;
+    box-shadow:
+        inset 0 0 50px hsla(0, 0%, 0%, 0.5),
+        0 0 40px hsla(180, 70%, 50%, 0.2);
+    transition: all 0.3s ease;
+}
+
+#tetris-canvas:hover {
+    border-color: hsla(180, 70%, 50%, 0.6);
+    box-shadow:
+        inset 0 0 50px hsla(0, 0%, 0%, 0.5),
+        0 0 60px hsla(180, 70%, 50%, 0.4);
+}
+
+/* ========================================
+   SIDE PANELS
+   ======================================== */
+.side-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.panel-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid hsla(0, 0%, 100%, 0.1);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s ease;
+}
+
+.panel-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+    border-color: hsla(180, 70%, 50%, 0.3);
+}
+
+.panel-card h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: var(--accent-cyan);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+/* Next Piece Preview */
+#next-canvas {
+    display: block;
+    background: hsla(240, 20%, 10%, 0.5);
+    border: 2px solid hsla(0, 0%, 100%, 0.1);
+    border-radius: 8px;
+    margin: 0 auto;
+}
+
+/* Score Displays */
+.score-display,
+.level-display,
+.lines-display {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3rem;
+    font-weight: 900;
+    text-align: center;
+    background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1;
+}
+
+/* ========================================
+   CONTROLS INFO
+   ======================================== */
+.controls-info {
+    min-width: 200px;
+}
+
+.control-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.control-item:last-child {
+    margin-bottom: 0;
+}
+
+.key {
+    font-family: 'Orbitron', sans-serif;
+    background: hsla(240, 20%, 10%, 0.8);
+    border: 2px solid hsla(180, 70%, 50%, 0.4);
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--accent-cyan);
+    min-width: 80px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.action {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+/* ========================================
+   BUTTONS
+   ======================================== */
+.btn-pause,
+.btn-restart {
+    font-family: 'Orbitron', sans-serif;
+    width: 100%;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 5px 20px hsla(270, 70%, 60%, 0.4);
+    transition: all 0.3s ease;
+}
+
+.btn-pause:hover,
+.btn-restart:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px hsla(270, 70%, 60%, 0.6);
+}
+
+.btn-pause:active,
+.btn-restart:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 15px hsla(270, 70%, 60%, 0.4);
+}
+
+/* ========================================
+   GAME OVER SCREEN
+   ======================================== */
+.game-over {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: hsla(240, 30%, 10%, 0.95);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.game-over.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.game-over-content {
+    text-align: center;
+    padding: 40px;
+    background: var(--card-bg);
+    border: 2px solid hsla(330, 70%, 60%, 0.5);
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+    animation: slideIn 0.5s ease;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.game-over-content h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3rem;
+    font-weight: 900;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.final-score {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    color: var(--text-secondary);
+}
+
+.final-score span {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent-cyan);
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+@media (max-width: 1200px) {
+    .game-area {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .side-panel {
+        flex-direction: row;
+        width: 100%;
+        max-width: 600px;
+        justify-content: center;
+    }
+
+    .game-title {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .game-title {
+        font-size: 2.5rem;
+        letter-spacing: 0.2em;
+    }
+
+    .side-panel {
+        flex-direction: column;
+    }
+
+    #tetris-canvas {
+        width: 100%;
+        max-width: 300px;
+        height: auto;
+    }
+}

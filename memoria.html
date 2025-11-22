@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Juego de memoria clásico. Encuentra todas las parejas de cartas.">
+    <title>Memoria - Juego Clásico</title>
+    <link rel="stylesheet" href="memoria.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="game-wrapper">
+            <a href="index.html" class="back-btn">← Volver al inicio</a>
+            
+            <header>
+                <h1 class="game-title">
+                    <span class="glow">MEMORIA</span>
+                </h1>
+            </header>
+
+            <div class="game-area">
+                <div class="side-panel left-panel">
+                    <div class="panel-card">
+                        <h2>Movimientos</h2>
+                        <div class="moves-display" id="moves">0</div>
+                    </div>
+                    
+                    <div class="panel-card">
+                        <h2>Parejas</h2>
+                        <div class="pairs-display" id="pairs">0 / 8</div>
+                    </div>
+                    
+                    <div class="panel-card">
+                        <h2>Tiempo</h2>
+                        <div class="time-display" id="time">0:00</div>
+                    </div>
+                </div>
+
+                <div class="main-game">
+                    <div id="start-screen" class="start-screen">
+                        <div class="start-content">
+                            <h2>¿Listo para jugar?</h2>
+                            <p>Encuentra todas las parejas de cartas</p>
+                            <button id="start-btn" class="btn-start">Comenzar</button>
+                        </div>
+                    </div>
+                    
+                    <div id="game-board" class="game-board"></div>
+                    
+                    <div id="win-screen" class="win-screen hidden">
+                        <div class="win-content">
+                            <h2>¡Felicidades!</h2>
+                            <p class="win-stats">
+                                Completaste el juego en<br>
+                                <span class="stat-highlight" id="final-moves">0</span> movimientos<br>
+                                y <span class="stat-highlight" id="final-time">0:00</span>
+                            </p>
+                            <button id="restart-btn" class="btn-restart">Jugar de nuevo</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="side-panel right-panel">
+                    <div class="panel-card">
+                        <h2>Mejor Tiempo</h2>
+                        <div class="best-time-display" id="best-time">--:--</div>
+                    </div>
+                    
+                    <div class="panel-card">
+                        <h2>Dificultad</h2>
+                        <select id="difficulty" class="difficulty-select">
+                            <option value="easy">Fácil (8 parejas)</option>
+                            <option value="medium">Medio (12 parejas)</option>
+                            <option value="hard">Difícil (18 parejas)</option>
+                        </select>
+                    </div>
+                    
+                    <button id="new-game-btn" class="btn-new-game">Nuevo Juego</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="memoria.js"></script>
+</body>
+</html>

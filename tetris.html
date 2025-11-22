@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Juega al clásico Tetris con un diseño moderno y elegante">
+    <title>Tetris - Juego Clásico</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="game-wrapper">
+            <a href="index.html" class="back-btn">← Volver al inicio</a>
+            
+            <header>
+                <h1 class="game-title">
+                    <span class="glow">TETRIS</span>
+                </h1>
+            </header>
+
+            <div class="game-area">
+                <div class="side-panel left-panel">
+                    <div class="panel-card">
+                        <h2>Siguiente</h2>
+                        <canvas id="next-canvas" width="120" height="120"></canvas>
+                    </div>
+                    
+                    <div class="panel-card controls-info">
+                        <h2>Controles</h2>
+                        <div class="control-item">
+                            <span class="key">← / A</span>
+                            <span class="action">Izquierda</span>
+                        </div>
+                        <div class="control-item">
+                            <span class="key">→ / D</span>
+                            <span class="action">Derecha</span>
+                        </div>
+                        <div class="control-item">
+                            <span class="key">↓ / S</span>
+                            <span class="action">Abajo</span>
+                        </div>
+                        <div class="control-item">
+                            <span class="key">↑ / W</span>
+                            <span class="action">Rotar</span>
+                        </div>
+                        <div class="control-item">
+                            <span class="key">ESPACIO</span>
+                            <span class="action">Caída rápida</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="main-game">
+                    <canvas id="tetris-canvas" width="300" height="600"></canvas>
+                    <div id="game-over" class="game-over hidden">
+                        <div class="game-over-content">
+                            <h2>Game Over</h2>
+                            <p class="final-score">Puntuación: <span id="final-score">0</span></p>
+                            <button id="restart-btn" class="btn-restart">Reintentar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="side-panel right-panel">
+                    <div class="panel-card">
+                        <h2>Puntuación</h2>
+                        <div class="score-display" id="score">0</div>
+                    </div>
+                    
+                    <div class="panel-card">
+                        <h2>Nivel</h2>
+                        <div class="level-display" id="level">1</div>
+                    </div>
+                    
+                    <div class="panel-card">
+                        <h2>Líneas</h2>
+                        <div class="lines-display" id="lines">0</div>
+                    </div>
+
+                    <button id="pause-btn" class="btn-pause">Pausar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="tetris.js"></script>
+</body>
+</html>

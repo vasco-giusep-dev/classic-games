@@ -1,0 +1,490 @@
+/* ========================================
+   RESET & BASE STYLES
+   ======================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-bg: hsla(240, 20%, 10%, 1);
+    --secondary-bg: hsla(240, 15%, 15%, 1);
+    --card-bg: hsla(240, 20%, 18%, 0.6);
+    --accent-purple: hsla(270, 70%, 60%, 1);
+    --accent-cyan: hsla(180, 70%, 50%, 1);
+    --accent-pink: hsla(330, 70%, 60%, 1);
+    --accent-blue: hsla(220, 80%, 60%, 1);
+    --accent-yellow: hsla(45, 100%, 55%, 1);
+    --text-primary: hsla(0, 0%, 95%, 1);
+    --text-secondary: hsla(0, 0%, 70%, 1);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background: radial-gradient(ellipse at bottom, hsla(240, 30%, 15%, 1) 0%, hsla(240, 30%, 5%, 1) 100%);
+    min-height: 100vh;
+    color: var(--text-primary);
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* ========================================
+   ANIMATED STARFIELD BACKGROUND
+   ======================================== */
+.stars,
+.stars2,
+.stars3 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.stars {
+    background-image:
+        radial-gradient(2px 2px at 20px 30px, white, transparent),
+        radial-gradient(2px 2px at 60px 70px, white, transparent),
+        radial-gradient(1px 1px at 50px 50px, white, transparent),
+        radial-gradient(1px 1px at 130px 80px, white, transparent),
+        radial-gradient(2px 2px at 90px 10px, white, transparent);
+    background-repeat: repeat;
+    background-size: 200px 200px;
+    animation: stars-drift 60s linear infinite;
+    opacity: 0.5;
+}
+
+.stars2 {
+    background-image:
+        radial-gradient(1px 1px at 40px 60px, white, transparent),
+        radial-gradient(1px 1px at 110px 90px, white, transparent),
+        radial-gradient(1px 1px at 170px 30px, white, transparent);
+    background-repeat: repeat;
+    background-size: 250px 250px;
+    animation: stars-drift 90s linear infinite;
+    opacity: 0.3;
+}
+
+.stars3 {
+    background-image:
+        radial-gradient(1px 1px at 75px 125px, white, transparent),
+        radial-gradient(1px 1px at 180px 25px, white, transparent);
+    background-repeat: repeat;
+    background-size: 300px 300px;
+    animation: stars-drift 120s linear infinite;
+    opacity: 0.2;
+}
+
+@keyframes stars-drift {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-1000px);
+    }
+}
+
+/* ========================================
+   CONTAINER & LAYOUT
+   ======================================== */
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    position: relative;
+    z-index: 1;
+}
+
+/* ========================================
+   HERO SECTION
+   ======================================== */
+.hero {
+    text-align: center;
+    margin-bottom: 60px;
+    padding: 60px 20px;
+}
+
+.main-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.glow {
+    background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple), var(--accent-pink));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 30px hsla(180, 70%, 50%, 0.5));
+    animation: glow-pulse 3s ease-in-out infinite;
+}
+
+.subtitle {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    letter-spacing: 0.5em;
+    color: var(--text-secondary);
+    font-weight: 400;
+}
+
+@keyframes glow-pulse {
+
+    0%,
+    100% {
+        filter: drop-shadow(0 0 30px hsla(180, 70%, 50%, 0.5));
+    }
+
+    50% {
+        filter: drop-shadow(0 0 50px hsla(270, 70%, 60%, 0.7));
+    }
+}
+
+.tagline {
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    color: var(--text-secondary);
+    font-weight: 300;
+    letter-spacing: 0.05em;
+}
+
+/* ========================================
+   GAMES GRID
+   ======================================== */
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+/* ========================================
+   GAME CARDS
+   ======================================== */
+.game-card {
+    position: relative;
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid hsla(0, 0%, 100%, 0.1);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+}
+
+.game-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, hsla(180, 70%, 50%, 0.1) 0%, hsla(270, 70%, 60%, 0.1) 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.game-card:hover::before {
+    opacity: 1;
+}
+
+.game-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    border-color: hsla(180, 70%, 50%, 0.5);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 40px hsla(180, 70%, 50%, 0.3);
+}
+
+.card-glow {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, hsla(180, 70%, 50%, 0.2) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+
+.game-card:hover .card-glow {
+    opacity: 1;
+    animation: rotate-glow 8s linear infinite;
+}
+
+@keyframes rotate-glow {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.card-content {
+    position: relative;
+    padding: 40px 30px;
+    z-index: 1;
+}
+
+/* ========================================
+   GAME ICONS
+   ======================================== */
+.icon-container {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: hsla(240, 20%, 10%, 0.8);
+    border: 2px solid hsla(0, 0%, 100%, 0.1);
+    border-radius: 20px;
+    transition: all 0.4s ease;
+}
+
+.game-card:hover .icon-container {
+    transform: scale(1.1) rotate(5deg);
+    border-color: hsla(180, 70%, 50%, 0.5);
+    box-shadow: 0 0 30px hsla(180, 70%, 50%, 0.3);
+}
+
+.game-icon {
+    width: 70px;
+    height: 70px;
+    filter: drop-shadow(0 0 10px currentColor);
+}
+
+/* ========================================
+   CARD CONTENT
+   ======================================== */
+.game-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2rem;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 15px;
+    letter-spacing: 0.1em;
+    background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.game-description {
+    text-align: center;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 25px;
+    font-size: 0.95rem;
+}
+
+.game-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding: 0 10px;
+}
+
+.difficulty {
+    font-size: 0.85rem;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.difficulty.easy {
+    background: hsla(120, 60%, 40%, 0.2);
+    color: hsla(120, 60%, 70%, 1);
+    border: 1px solid hsla(120, 60%, 50%, 0.4);
+}
+
+.difficulty.medium {
+    background: hsla(45, 100%, 50%, 0.2);
+    color: hsla(45, 100%, 70%, 1);
+    border: 1px solid hsla(45, 100%, 55%, 0.4);
+}
+
+.players {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+/* ========================================
+   PLAY BUTTON
+   ======================================== */
+.play-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 16px 30px;
+    background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+    color: white;
+    text-decoration: none;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 20px hsla(270, 70%, 60%, 0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+.play-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.play-button:hover::before {
+    left: 100%;
+}
+
+.play-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px hsla(270, 70%, 60%, 0.6);
+}
+
+.play-button:active {
+    transform: translateY(0);
+}
+
+.arrow {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s ease;
+}
+
+.play-button:hover .arrow {
+    transform: translateX(5px);
+}
+
+/* ========================================
+   CARD SPECIFIC STYLES
+   ======================================== */
+.tetris-card:hover .game-title {
+    background: linear-gradient(135deg, #FF006E, #06FFA5);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+.snake-card:hover .game-title {
+    background: linear-gradient(135deg, #06FFA5, #3A86FF);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+.memory-card:hover .game-title {
+    background: linear-gradient(135deg, #8338EC, #FFBE0B);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+.pong-card:hover .game-title {
+    background: linear-gradient(135deg, #FB5607, #FFBE0B);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+.breakout-card:hover .game-title {
+    background: linear-gradient(135deg, #FFBE0B, #FF006E);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+.space-invaders-card:hover .game-title {
+    background: linear-gradient(135deg, #06FFA5, #8338EC);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+/* Coming Soon Card */
+.coming-soon-card {
+    opacity: 0.7;
+}
+
+.coming-soon-card:hover {
+    transform: translateY(-5px) scale(1.01);
+}
+
+.coming-soon-card .game-title {
+    background: linear-gradient(135deg, #8338EC, #3A86FF);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+.play-button.disabled {
+    background: linear-gradient(135deg, #555, #777);
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.play-button.disabled:hover {
+    transform: none;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+}
+
+.play-button.disabled::before {
+    display: none;
+}
+
+/* ========================================
+   FOOTER
+   ======================================== */
+.footer {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    border-top: 1px solid hsla(0, 0%, 100%, 0.1);
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+@media (max-width: 768px) {
+    .games-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .hero {
+        padding: 40px 20px;
+        margin-bottom: 40px;
+    }
+
+    .card-content {
+        padding: 30px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .game-meta {
+        flex-direction: column;
+        gap: 10px;
+    }
+}

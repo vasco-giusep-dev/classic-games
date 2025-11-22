@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Centro de juegos clásicos - Tetris, Snake y Memoria">
+    <title>Arcade Clásico - Juegos Retro</title>
+    <link rel="stylesheet" href="home.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="stars2"></div>
+    <div class="stars3"></div>
+    
+    <div class="container">
+        <header class="hero">
+            <h1 class="main-title">
+                <span class="glow">ARCADE</span>
+                <span class="subtitle">CLÁSICO</span>
+            </h1>
+            <p class="tagline">Revive los juegos legendarios de todos los tiempos</p>
+        </header>
+
+        <main class="games-grid">
+            <article class="game-card tetris-card" data-game="tetris">
+                <div class="card-glow"></div>
+                <div class="card-content">
+                    <div class="icon-container">
+                        <svg class="game-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="20" y="10" width="15" height="15" fill="#FF006E"/>
+                            <rect x="35" y="10" width="15" height="15" fill="#FF006E"/>
+                            <rect x="50" y="10" width="15" height="15" fill="#FF006E"/>
+                            <rect x="35" y="25" width="15" height="15" fill="#FF006E"/>
+                            <rect x="20" y="50" width="15" height="15" fill="#06FFA5"/>
+                            <rect x="35" y="50" width="15" height="15" fill="#06FFA5"/>
+                            <rect x="35" y="65" width="15" height="15" fill="#06FFA5"/>
+                            <rect x="50" y="65" width="15" height="15" fill="#06FFA5"/>
+                        </svg>
+                    </div>
+                    <h2 class="game-title">TETRIS</h2>
+                    <p class="game-description">Rota y alinea las piezas para completar líneas. El puzzle clásico que nunca envejece.</p>
+                    <div class="game-meta">
+                        <span class="difficulty easy">Fácil - Medio</span>
+                        <span class="players">1 Jugador</span>
+                    </div>
+                    <a href="tetris.html" class="play-button">
+                        <span>Jugar Ahora</span>
+                        <svg class="arrow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+            </article>
+
+            <article class="game-card snake-card" data-game="snake">
+                <div class="card-glow"></div>
+                <div class="card-content">
+                    <div class="icon-container">
+                        <svg class="game-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="30" cy="30" r="8" fill="#06FFA5"/>
+                            <circle cx="30" cy="45" r="8" fill="#06FFA5"/>
+                            <circle cx="30" cy="60" r="8" fill="#06FFA5"/>
+                            <circle cx="45" cy="60" r="8" fill="#06FFA5"/>
+                            <circle cx="60" cy="60" r="8" fill="#06FFA5"/>
+                            <circle cx="60" cy="45" r="8" fill="#06FFA5"/>
+                            <circle cx="70" cy="70" r="6" fill="#FF006E"/>
+                        </svg>
+                    </div>
+                    <h2 class="game-title">SNAKE</h2>
+                    <p class="game-description">Controla la serpiente, come la comida y crece sin chocarte. ¿Cuánto puedes crecer?</p>
+                    <div class="game-meta">
+                        <span class="difficulty medium">Medio</span>
+                        <span class="players">1 Jugador</span>
+                    </div>
+                    <a href="snake.html" class="play-button">
+                        <span>Jugar Ahora</span>
+                        <svg class="arrow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+            </article>
+
+            <article class="game-card memory-card" data-game="memory">
+                <div class="card-glow"></div>
+                <div class="card-content">
+                    <div class="icon-container">
+                        <svg class="game-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="15" y="15" width="30" height="40" rx="4" fill="#8338EC"/>
+                            <rect x="55" y="15" width="30" height="40" rx="4" fill="#8338EC"/>
+                            <rect x="15" y="60" width="30" height="25" rx="4" fill="#3A86FF"/>
+                            <circle cx="30" cy="30" r="8" fill="#FFBE0B"/>
+                            <circle cx="70" cy="30" r="8" fill="#FFBE0B"/>
+                        </svg>
+                    </div>
+                    <h2 class="game-title">MEMORIA</h2>
+                    <p class="game-description">Encuentra las parejas de cartas usando tu memoria. Mejora tu concentración.</p>
+                    <div class="game-meta">
+                        <span class="difficulty easy">Fácil</span>
+                        <span class="players">1 Jugador</span>
+                    </div>
+                    <a href="memoria.html" class="play-button">
+                        <span>Jugar Ahora</span>
+                        <svg class="arrow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+            </article>
+
+            <article class="game-card pong-card" data-game="pong">
+                <div class="card-glow"></div>
+                <div class="card-content">
+                    <div class="icon-container">
+                        <svg class="game-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="10" y="30" width="8" height="40" rx="4" fill="#FB5607"/>
+                            <rect x="82" y="25" width="8" height="40" rx="4" fill="#FB5607"/>
+                            <circle cx="50" cy="50" r="6" fill="#FFBE0B"/>
+                            <line x1="50" y1="10" x2="50" y2="90" stroke="#FB5607" stroke-width="2" stroke-dasharray="5,5" opacity="0.5"/>
+                        </svg>
+                    </div>
+                    <h2 class="game-title">PONG</h2>
+                    <p class="game-description">El clásico juego de ping-pong. Compite contra la CPU y demuestra tus reflejos.</p>
+                    <div class="game-meta">
+                        <span class="difficulty medium">Medio</span>
+                        <span class="players">1 vs CPU</span>
+                    </div>
+                    <a href="pong.html" class="play-button">
+                        <span>Jugar Ahora</span>
+                        <svg class="arrow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+            </article>
+
+            <article class="game-card breakout-card" data-game="breakout">
+                <div class="card-glow"></div>
+                <div class="card-content">
+                    <div class="icon-container">
+                        <svg class="game-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="15" y="15" width="18" height="8" rx="2" fill="#FFBE0B"/>
+                            <rect x="35" y="15" width="18" height="8" rx="2" fill="#FB5607"/>
+                            <rect x="55" y="15" width="18" height="8" rx="2" fill="#FF006E"/>
+                            <rect x="15" y="25" width="18" height="8" rx="2" fill="#06FFA5"/>
+                            <rect x="35" y="25" width="18" height="8" rx="2" fill="#3A86FF"/>
+                            <rect x="55" y="25" width="18" height="8" rx="2" fill="#8338EC"/>
+                            <rect x="30" y="75" width="40" height="8" rx="4" fill="#FFBE0B"/>
+                            <circle cx="50" cy="60" r="5" fill="#FF006E"/>
+                        </svg>
+                    </div>
+                    <h2 class="game-title">BREAKOUT</h2>
+                    <p class="game-description">Rompe todos los bloques con la pelota. Cuidado con no dejarla caer.</p>
+                    <div class="game-meta">
+                        <span class="difficulty medium">Medio - Difícil</span>
+                        <span class="players">1 Jugador</span>
+                    </div>
+                    <a href="breakout.html" class="play-button">
+                        <span>Jugar Ahora</span>
+                        <svg class="arrow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+            </article>
+
+            <article class="game-card space-invaders-card" data-game="space-invaders">
+                <div class="card-glow"></div>
+                <div class="card-content">
+                    <div class="icon-container">
+                        <svg class="game-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M30 30 L35 35 L40 30 L45 35 L50 30 L55 35 L60 30 L65 35 L70 30 L65 25 L60 30 L55 25 L50 30 L45 25 L40 30 L35 25 Z" fill="#06FFA5"/>
+                            <rect x="27" y="38" width="6" height="8" fill="#06FFA5"/>
+                            <rect x="67" y="38" width="6" height="8" fill="#06FFA5"/>
+                            <rect x="40" y="42" width="20" height="8" fill="#06FFA5"/>
+                            <rect x="48" y="70" width="4" height="15" fill="#FF006E"/>
+                            <circle cx="50" cy="68" r="3" fill="#FFBE0B"/>
+                        </svg>
+                    </div>
+                    <h2 class="game-title">SPACE INVADERS</h2>
+                    <p class="game-description">Defiende la Tierra de la invasión alienígena. Dispara y esquiva.</p>
+                    <div class="game-meta">
+                        <span class="difficulty medium">Medio - Difícil</span>
+                        <span class="players">1 Jugador</span>
+                    </div>
+                    <a href="space-invaders.html" class="play-button">
+                        <span>Jugar Ahora</span>
+                        <svg class="arrow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+            </article>
+
+            <article class="game-card coming-soon-card" data-game="coming-soon">
+                <div class="card-glow"></div>
+                <div class="card-content">
+                    <div class="icon-container">
+                        <svg class="game-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="50" cy="50" r="35" stroke="#8338EC" stroke-width="4" fill="none" stroke-dasharray="5,5"/>
+                            <text x="50" y="55" font-family="Arial" font-size="40" fill="#8338EC" text-anchor="middle">?</text>
+                        </svg>
+                    </div>
+                    <h2 class="game-title">MÁS JUEGOS</h2>
+                    <p class="game-description">Nuevos juegos clásicos llegarán pronto. ¡Mantente atento!</p>
+                    <div class="game-meta">
+                        <span class="difficulty easy">Próximamente</span>
+                        <span class="players">...</span>
+                    </div>
+                    <button class="play-button disabled" disabled>
+                        <span>Próximamente</span>
+                    </button>
+                </div>
+            </article>
+        </main>
+
+        <footer class="footer">
+            <p>Hecho con ❤️ para los amantes de los juegos clásicos</p>
+        </footer>
+    </div>
+</body>
+</html>
