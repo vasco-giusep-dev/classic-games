@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Juega al clásico Breakout. Rompe todos los bloques.">
-    <title>Breakout - Juego Clásico</title>
-    <link rel="stylesheet" href="breakout.css">
+    <meta name="description" content="Defiende la Tierra de los invasores espaciales">
+    <title>Space Invaders - Juego Clásico</title>
+    <link rel="stylesheet" href="css/space-invaders.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
@@ -13,11 +13,11 @@
 <body>
     <div class="container">
         <div class="game-wrapper">
-            <a href="index.html" class="back-btn">← Volver al inicio</a>
+            <a href="../index.html" class="back-btn">← Volver al inicio</a>
             
             <header>
                 <h1 class="game-title">
-                    <span class="glow">BREAKOUT</span>
+                    <span class="glow">SPACE INVADERS</span>
                 </h1>
             </header>
 
@@ -29,8 +29,8 @@
                     </div>
                     
                     <div class="panel-card">
-                        <h2>Nivel</h2>
-                        <div class="level-display" id="level">1</div>
+                        <h2>Récord</h2>
+                        <div class="high-score-display" id="high-score">0</div>
                     </div>
                     
                     <div class="panel-card controls-info">
@@ -45,7 +45,11 @@
                         </div>
                         <div class="control-item">
                             <span class="key">ESPACIO</span>
-                            <span class="action">Lanzar/Pausar</span>
+                            <span class="action">Disparar</span>
+                        </div>
+                        <div class="control-item">
+                            <span class="key">P</span>
+                            <span class="action">Pausar</span>
                         </div>
                     </div>
                 </div>
@@ -53,14 +57,14 @@
                 <div class="main-game">
                     <div id="start-screen" class="start-screen">
                         <div class="start-content">
-                            <h2>¿Listo para romper bloques?</h2>
+                            <h2>¡Invasión Alienígena!</h2>
                             <p>Presiona ESPACIO para comenzar</p>
                         </div>
                     </div>
                     <canvas id="game-canvas" width="800" height="600"></canvas>
                     <div id="game-over" class="game-over hidden">
                         <div class="game-over-content">
-                            <h2 id="result-text">Game Over</h2>
+                            <h2>Game Over</h2>
                             <p class="final-score">Puntuación: <span id="final-score">0</span></p>
                             <button id="restart-btn" class="btn-restart">Jugar de nuevo</button>
                         </div>
@@ -71,15 +75,15 @@
                     <div class="panel-card">
                         <h2>Vidas</h2>
                         <div class="lives-display" id="lives">
-                            <span class="heart">❤️</span>
-                            <span class="heart">❤️</span>
-                            <span class="heart">❤️</span>
+                            <span class="life">🚀</span>
+                            <span class="life">🚀</span>
+                            <span class="life">🚀</span>
                         </div>
                     </div>
                     
                     <div class="panel-card">
-                        <h2>Bloques</h2>
-                        <div class="blocks-display" id="blocks-remaining">0</div>
+                        <h2>Nivel</h2>
+                        <div class="level-display" id="level">1</div>
                     </div>
                     
                     <button id="pause-btn" class="btn-pause">Pausar</button>
@@ -88,6 +92,6 @@
         </div>
     </div>
 
-    <script src="breakout.js"></script>
+    <script src="js/space-invaders.js"></script>
 </body>
 </html>

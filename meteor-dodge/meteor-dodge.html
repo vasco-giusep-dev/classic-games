@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Esquiva meteoros en el espacio - Juego de alta dificultad">
+    <title>Meteor Dodge - Juego Difícil</title>
+    <link rel="stylesheet" href="css/meteor-dodge.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="game-wrapper">
+            <a href="../index.html" class="back-btn">← Volver al inicio</a>
+            
+            <header>
+                <h1 class="game-title">
+                    <span class="glow">METEOR DODGE</span>
+                </h1>
+                <p class="difficulty-warning">⚠️ DIFICULTAD: EXTREMA ⚠️</p>
+            </header>
+
+            <div class="game-area">
+                <div class="side-panel left-panel">
+                    <div class="panel-card">
+                        <h2>Puntuación</h2>
+                        <div class="score-display" id="score">0</div>
+                    </div>
+                    
+                    <div class="panel-card">
+                        <h2>Récord</h2>
+                        <div class="high-score-display" id="high-score">0</div>
+                    </div>
+                    
+                    <div class="panel-card">
+                        <h2>Tiempo</h2>
+                        <div class="time-display" id="time">0.0s</div>
+                    </div>
+                </div>
+
+                <div class="main-game">
+                    <div id="start-screen" class="start-screen">
+                        <div class="start-content">
+                            <h2>☄️ Misión Imposible ☄️</h2>
+                            <p>Esquiva los meteoros el mayor tiempo posible</p>
+                            <div class="warning-box">
+                                <p>⚠️ ¡UN SOLO GOLPE Y PIERDES!</p>
+                                <p>La velocidad aumenta constantemente</p>
+                            </div>
+                            <p class="controls-hint">Usa el mouse o WASD para moverte</p>
+                            <p class="blink">Presiona ESPACIO para comenzar</p>
+                        </div>
+                    </div>
+                    <canvas id="game-canvas" width="800" height="600"></canvas>
+                    <div id="game-over" class="game-over hidden">
+                        <div class="game-over-content">
+                            <h2>💥 DESTRUIDO 💥</h2>
+                            <p class="final-score">Puntuación: <span id="final-score">0</span></p>
+                            <p class="final-time">Tiempo: <span id="final-time">0.0s</span></p>
+                            <button id="restart-btn" class="btn-restart">Reintentar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="side-panel right-panel">
+                    <div class="panel-card controls-info">
+                        <h2>Controles</h2>
+                        <div class="control-item">
+                            <span class="key">Mouse</span>
+                            <span class="action">Mover nave</span>
+                        </div>
+                        <div class="control-item">
+                            <span class="key">WASD</span>
+                            <span class="action">Alternar</span>
+                        </div>
+                        <div class="control-item">
+                            <span class="key">ESPACIO</span>
+                            <span class="action">Iniciar/Pausar</span>
+                        </div>
+                    </div>
+                    
+                    <div class="panel-card stats-card">
+                        <h2>Estadísticas</h2>
+                        <div class="stat-item">
+                            <span class="stat-label">Meteoros esquivados:</span>
+                            <span id="meteors-dodged" class="stat-value">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Velocidad:</span>
+                            <span id="speed-mult" class="stat-value">1.0x</span>
+                        </div>
+                    </div>
+                    
+                    <button id="pause-btn" class="btn-pause">Pausar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/meteor-dodge.js"></script>
+</body>
+</html>

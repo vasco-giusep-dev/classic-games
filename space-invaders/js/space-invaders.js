@@ -260,12 +260,14 @@ function draw() {
         if (alien.alive) {
             ctx.fillStyle = '#06FFA5';
             ctx.fillRect(alien.x, alien.y, alien.width, alien.height);
-            ctx.fill();
 
-            // Alien eyes
+            // Alien eyes - draw each eye separately
             ctx.fillStyle = '#FF006E';
             ctx.beginPath();
             ctx.arc(alien.x + 12, alien.y + 10, 4, 0, Math.PI * 2);
+            ctx.fill();
+
+            ctx.beginPath();
             ctx.arc(alien.x + 28, alien.y + 10, 4, 0, Math.PI * 2);
             ctx.fill();
         }

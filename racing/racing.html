@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Juego de carreras multijugador - Compite contra un amigo">
+    <title>Racing - Juego Multijugador</title>
+    <link rel="stylesheet" href="css/racing.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="game-wrapper">
+            <a href="../index.html" class="back-btn">← Volver al inicio</a>
+            
+            <header>
+                <h1 class="game-title">
+                    <span class="glow">RACING</span>
+                </h1>
+            </header>
+
+            <div class="game-area">
+                <div class="side-panel left-panel">
+                    <div class="panel-card player1-card">
+                        <h2>Jugador 1</h2>
+                        <div class="car-icon red-car">🏎️</div>
+                        <div class="lap-display">
+                            <span class="label">Vueltas:</span>
+                            <span id="player1-laps" class="laps">0 / 3</span>
+                        </div>
+                    </div>
+                    
+                    <div class="panel-card controls-info">
+                        <h2>Controles P1</h2>
+                        <div class="control-item">
+                            <span class="key">↑</span>
+                            <span class="action">Acelerar</span>
+                        </div>
+                        <div class="control-item">
+                            <span class="key">↓</span>
+                            <span class="action">Frenar</span>
+                        </div>
+                        <div class="control-item">
+                            <span class="key">← →</span>
+                            <span class="action">Girar</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="main-game">
+                    <div id="start-screen" class="start-screen">
+                        <div class="start-content">
+                            <h2>¡Carrera Multijugador!</h2>
+                            <p>Primer jugador en completar 3 vueltas gana</p>
+                            <p class="blink">Presiona ESPACIO para comenzar</p>
+                        </div>
+                    </div>
+                    <canvas id="game-canvas" width="800" height="600"></canvas>
+                    <div id="game-over" class="game-over hidden">
+                        <div class="game-over-content">
+                            <h2 id="winner-text">¡Jugador 1 Gana!</h2>
+                            <button id="restart-btn" class="btn-restart">Jugar de nuevo</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="side-panel right-panel">
+                    <div class="panel-card player2-card">
+                        <h2>Jugador 2</h2>
+                        <div class="car-icon blue-car">🏎️</div>
+                        <div class="lap-display">
+                            <span class="label">Vueltas:</span>
+                            <span id="player2-laps" class="laps">0 / 3</span>
+                        </div>
+                    </div>
+                    
+                    <div class="panel-card controls-info">
+                        <h2>Controles P2</h2>
+                        <div class="control-item">
+                            <span class="key">W</span>
+                            <span class="action">Acelerar</span>
+                        </div>
+                        <div class="control-item">
+                            <span class="key">S</span>
+                            <span class="action">Frenar</span>
+                        </div>
+                        <div class="control-item">
+                            <span class="key">A D</span>
+                            <span class="action">Girar</span>
+                        </div>
+                    </div>
+                    
+                    <button id="pause-btn" class="btn-pause">Pausar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/racing.js"></script>
+</body>
+</html>

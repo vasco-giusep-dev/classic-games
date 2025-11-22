@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Platform Runner - Arcade Clásico</title>
+    <link rel="stylesheet" href="css/platform-runner.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="stars2"></div>
+    
+    <div class="container">
+        <header class="game-header">
+            <a href="../index.html" class="back-button">← Volver</a>
+            <h1 class="game-title">PLATFORM RUNNER</h1>
+        </header>
+
+        <div class="game-wrapper">
+            <!-- HUD -->
+            <div class="hud">
+                <div class="hud-item">
+                    <span class="hud-label">Nivel:</span>
+                    <span class="hud-value" id="level">1</span>
+                </div>
+                <div class="hud-item">
+                    <span class="hud-label">Puntos:</span>
+                    <span class="hud-value" id="score">0</span>
+                </div>
+                <div class="hud-item">
+                    <span class="hud-label">Vidas:</span>
+                    <span class="hud-value" id="lives">❤️❤️❤️</span>
+                </div>
+                <div class="hud-item">
+                    <span class="hud-label">Monedas:</span>
+                    <span class="hud-value" id="coins">0</span>
+                </div>
+            </div>
+
+            <!-- Game Canvas -->
+            <div class="canvas-container">
+                <canvas id="game-canvas" width="800" height="600"></canvas>
+                
+                <!-- Start Screen -->
+                <div id="start-screen" class="screen">
+                    <h2>PLATFORM RUNNER</h2>
+                    <div class="instructions">
+                        <p><strong>Controles:</strong></p>
+                        <p>← → Moverse</p>
+                        <p>ESPACIO / ↑ Saltar</p>
+                        <p>ESPACIO x2 Doble Salto</p>
+                    </div>
+                    <p class="start-hint">Presiona ESPACIO para comenzar</p>
+                </div>
+
+                <!-- Game Over Screen -->
+                <div id="game-over" class="screen hidden">
+                    <h2>GAME OVER</h2>
+                    <p class="final-stats">Nivel alcanzado: <span id="final-level">1</span></p>
+                    <p class="final-stats">Puntuación final: <span id="final-score">0</span></p>
+                    <button id="restart-btn" class="game-button">Reintentar</button>
+                </div>
+
+                <!-- Level Complete Screen -->
+                <div id="level-complete" class="screen hidden">
+                    <h2>¡NIVEL COMPLETADO!</h2>
+                    <p class="final-stats">Puntuación: <span id="level-score">0</span></p>
+                    <button id="next-level-btn" class="game-button">Siguiente Nivel</button>
+                </div>
+
+                <!-- Victory Screen -->
+                <div id="victory" class="screen hidden">
+                    <h2>🎉 ¡VICTORIA! 🎉</h2>
+                    <p class="final-stats">¡Completaste todos los niveles!</p>
+                    <p class="final-stats">Puntuación final: <span id="victory-score">0</span></p>
+                    <button id="play-again-btn" class="game-button">Jugar de Nuevo</button>
+                </div>
+            </div>
+
+            <!-- Controls Info -->
+            <div class="controls-info">
+                <div class="control-item">
+                    <span class="key">←→</span>
+                    <span>Mover</span>
+                </div>
+                <div class="control-item">
+                    <span class="key">ESPACIO</span>
+                    <span>Saltar</span>
+                </div>
+                <div class="control-item">
+                    <span class="key">P</span>
+                    <span>Pausa</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/platform-runner.js"></script>
+</body>
+</html>
