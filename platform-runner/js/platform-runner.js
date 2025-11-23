@@ -37,10 +37,10 @@ class Player {
 
     update() {
         // Horizontal movement
-        if (keys['ArrowLeft']) {
+        if (keys['ArrowLeft'] || keys['a'] || keys['A']) {
             this.velocityX = -PLAYER_SPEED;
             this.direction = -1;
-        } else if (keys['ArrowRight']) {
+        } else if (keys['ArrowRight'] || keys['d'] || keys['D']) {
             this.velocityX = PLAYER_SPEED;
             this.direction = 1;
         } else {
@@ -49,6 +49,11 @@ class Player {
 
         // Apply gravity
         this.velocityY += GRAVITY;
+
+        // Fast fall with 'S' key or Down Arrow
+        if ((keys['s'] || keys['S'] || keys['ArrowDown']) && !this.onGround) {
+            this.velocityY += GRAVITY * 0.8; // Additional downward force
+        }
 
         // Update position
         this.x += this.velocityX;
@@ -554,7 +559,7 @@ function init() {
 function handleKeyDown(e) {
     keys[e.key] = true;
 
-    if (e.key === ' ' || e.key === 'ArrowUp') {
+    if (e.key === ' ' || e.key === 'ArrowUp' || e.key === 'w' || e.key === 'W') {
         e.preventDefault();
 
         if (!gameStarted && !gameOver) {
