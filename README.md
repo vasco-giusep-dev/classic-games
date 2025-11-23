@@ -35,9 +35,9 @@ Encuentra las parejas de cartas usando tu memoria.
 
 ### 4. **Pong**
 El clásico juego de ping-pong contra la CPU.
-- **Dificultad**: Medio
+- **Dificultad**: Medio - Difícil
 - **Controles**: W/S o Flechas
-- **Características**: IA ajustable, efectos de sonido visuales
+- **Características**: IA ajustable, efectos de sonido visuales, **3 pelotas simultáneas en modo difícil**
 
 ### 5. **Breakout**
 Rompe todos los bloques con la pelota.

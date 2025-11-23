@@ -14,7 +14,7 @@ const DIFFICULTY = {
 
 // GAME STATE
 let canvas, ctx;
-let playerPaddle, cpuPaddle, ball;
+let playerPaddle, cpuPaddle, balls;
 let playerScore = 0;
 let cpuScore = 0;
 let gameStarted = false;
@@ -68,13 +68,20 @@ function resetGame() {
 
 function resetBall() {
     const config = DIFFICULTY[difficulty];
-    ball = {
-        x: CANVAS_WIDTH / 2,
-        y: CANVAS_HEIGHT / 2,
-        size: BALL_SIZE,
-        speedX: config.speed * (Math.random() > 0.5 ? 1 : -1),
-        speedY: config.speed * (Math.random() * 0.5 + 0.5) * (Math.random() > 0.5 ? 1 : -1)
-    };
+    balls = [];
+
+    // En modo difícil, crear 3 pelotas
+    const numBalls = difficulty === 'hard' ? 3 : 1;
+
+    for (let i = 0; i < numBalls; i++) {
+        balls.push({
+            x: CANVAS_WIDTH / 2,
+            y: CANVAS_HEIGHT / 2 + (i * 50) - 50, // Distribuir verticalmente
+            size: BALL_SIZE,
+            speedX: config.speed * (Math.random() > 0.5 ? 1 : -1),
+            speedY: config.speed * (Math.random() * 0.5 + 0.5) * (Math.random() > 0.5 ? 1 : -1)
+        });
+    }
 }
 
 // GAME LOOP
@@ -92,10 +99,23 @@ function update() {
         playerPaddle.y += playerPaddle.speed;
     }
 
-    // Move CPU paddle (AI)
+    // Move CPU paddle (AI) - seguir la pelota más cercana
     const config = DIFFICULTY[difficulty];
     const paddleCenter = cpuPaddle.y + cpuPaddle.height / 2;
-    const ballCenter = ball.y + ball.size / 2;
+
+    // Encontrar la pelota más cercana a la CPU
+    let closestBall = balls[0];
+    let closestDistance = Math.abs(balls[0].x - cpuPaddle.x);
+
+    balls.forEach(ball => {
+        const distance = Math.abs(ball.x - cpuPaddle.x);
+        if (distance < closestDistance) {
+            closestDistance = distance;
+            closestBall = ball;
+        }
+    });
+
+    const ballCenter = closestBall.y + closestBall.size / 2;
 
     if (paddleCenter < ballCenter - 10) {
         cpuPaddle.y += config.cpuSpeed;
@@ -106,37 +126,48 @@ function update() {
     // Keep CPU paddle in bounds
     cpuPaddle.y = Math.max(0, Math.min(CANVAS_HEIGHT - cpuPaddle.height, cpuPaddle.y));
 
-    // Move ball
-    ball.x += ball.speedX;
-    ball.y += ball.speedY;
+    // Procesar cada pelota
+    balls.forEach((ball, index) => {
+        // Move ball
+        ball.x += ball.speedX;
+        ball.y += ball.speedY;
 
-    // Ball collision with top/bottom
-    if (ball.y <= 0 || ball.y + ball.size >= CANVAS_HEIGHT) {
-        ball.speedY *= -1;
-    }
+        // Ball collision with top/bottom
+        if (ball.y <= 0 || ball.y + ball.size >= CANVAS_HEIGHT) {
+            ball.speedY *= -1;
+        }
 
-    // Ball collision with paddles
-    if (checkPaddleCollision(ball, playerPaddle) || checkPaddleCollision(ball, cpuPaddle)) {
-        ball.speedX *= -1.05; // Increase speed slightly
+        // Ball collision with paddles
+        if (checkPaddleCollision(ball, playerPaddle) || checkPaddleCollision(ball, cpuPaddle)) {
+            ball.speedX *= -1.05; // Increase speed slightly
 
-        // Add spin based on where ball hit paddle
-        const paddle = ball.x < CANVAS_WIDTH / 2 ? playerPaddle : cpuPaddle;
-        const hitPos = (ball.y - paddle.y) / paddle.height;
-        ball.speedY = (hitPos - 0.5) * 10;
-    }
+            // Add spin based on where ball hit paddle
+            const paddle = ball.x < CANVAS_WIDTH / 2 ? playerPaddle : cpuPaddle;
+            const hitPos = (ball.y - paddle.y) / paddle.height;
+            ball.speedY = (hitPos - 0.5) * 10;
+        }
 
-    // Score points
-    if (ball.x < 0) {
-        cpuScore++;
-        updateScores();
-        checkWin();
-        resetBall();
-    } else if (ball.x > CANVAS_WIDTH) {
-        playerScore++;
-        updateScores();
-        checkWin();
-        resetBall();
-    }
+        // Score points
+        if (ball.x < 0) {
+            cpuScore++;
+            updateScores();
+            checkWin();
+            balls.splice(index, 1); // Remover esta pelota
+            // Si no quedan pelotas, resetear
+            if (balls.length === 0) {
+                setTimeout(resetBall, 500);
+            }
+        } else if (ball.x > CANVAS_WIDTH) {
+            playerScore++;
+            updateScores();
+            checkWin();
+            balls.splice(index, 1); // Remover esta pelota
+            // Si no quedan pelotas, resetear
+            if (balls.length === 0) {
+                setTimeout(resetBall, 500);
+            }
+        }
+    });
 
     draw();
     requestAnimationFrame(update);
@@ -192,23 +223,25 @@ function draw() {
     ctx.fillStyle = cpuGradient;
     ctx.fillRect(cpuPaddle.x, cpuPaddle.y, cpuPaddle.width, cpuPaddle.height);
 
-    // Draw ball
-    const ballGradient = ctx.createRadialGradient(
-        ball.x + ball.size / 2, ball.y + ball.size / 2, 0,
-        ball.x + ball.size / 2, ball.y + ball.size / 2, ball.size
-    );
-    ballGradient.addColorStop(0, '#FFBE0B');
-    ballGradient.addColorStop(1, '#FB5607');
-    ctx.fillStyle = ballGradient;
-    ctx.beginPath();
-    ctx.arc(ball.x + ball.size / 2, ball.y + ball.size / 2, ball.size / 2, 0, Math.PI * 2);
-    ctx.fill();
+    // Draw balls
+    balls.forEach(ball => {
+        const ballGradient = ctx.createRadialGradient(
+            ball.x + ball.size / 2, ball.y + ball.size / 2, 0,
+            ball.x + ball.size / 2, ball.y + ball.size / 2, ball.size
+        );
+        ballGradient.addColorStop(0, '#FFBE0B');
+        ballGradient.addColorStop(1, '#FB5607');
+        ctx.fillStyle = ballGradient;
+        ctx.beginPath();
+        ctx.arc(ball.x + ball.size / 2, ball.y + ball.size / 2, ball.size / 2, 0, Math.PI * 2);
+        ctx.fill();
 
-    // Draw ball glow
-    ctx.fillStyle = 'rgba(255, 190, 11, 0.3)';
-    ctx.beginPath();
-    ctx.arc(ball.x + ball.size / 2, ball.y + ball.size / 2, ball.size, 0, Math.PI * 2);
-    ctx.fill();
+        // Draw ball glow
+        ctx.fillStyle = 'rgba(255, 190, 11, 0.3)';
+        ctx.beginPath();
+        ctx.arc(ball.x + ball.size / 2, ball.y + ball.size / 2, ball.size, 0, Math.PI * 2);
+        ctx.fill();
+    });
 }
 
 // INPUT HANDLING
