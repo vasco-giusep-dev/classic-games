@@ -66,8 +66,8 @@ Esquiva meteoros en el espacio - extremadamente difícil.
 ### 9. **Platform Runner** ⭐
 Juego de plataformas con física realista.
 - **Dificultad**: Medio - Difícil
-- **Controles**: Flechas, Espacio (doble salto)
-- **Características**: 3 niveles, enemigos inteligentes, plataformas móviles
+- **Controles**: WASD o Flechas, Espacio para saltar (doble salto), S o ↓ para caída rápida
+- **Características**: 3 niveles, enemigos inteligentes, plataformas móviles, mecánica de caída rápida
 
 ## 🚀 Inicio Rápido
 
