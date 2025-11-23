@@ -371,6 +371,56 @@ header {
 }
 
 /* ========================================
+   MOBILE TOUCH CONTROLS
+   ======================================== */
+.mobile-controls {
+    display: none;
+    /* Hidden by default, shown via JS for touch devices */
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+    width: 100%;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.touch-row {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.touch-btn {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2rem;
+    min-width: 80px;
+    min-height: 60px;
+    padding: 15px;
+    background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+    color: white;
+    border: 2px solid hsla(270, 70%, 60%, 0.5);
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 5px 20px hsla(270, 70%, 60%, 0.4);
+    transition: all 0.2s ease;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.touch-btn:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 10px hsla(270, 70%, 60%, 0.6);
+}
+
+.touch-btn-special {
+    background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+    box-shadow: 0 5px 20px hsla(180, 70%, 50%, 0.4);
+    flex: 1;
+    max-width: 200px;
+}
+
+/* ========================================
    RESPONSIVE DESIGN
    ======================================== */
 @media (max-width: 1200px) {
@@ -384,14 +434,47 @@ header {
         width: 100%;
         max-width: 600px;
         justify-content: center;
+        flex-wrap: wrap;
     }
 
     .game-title {
         font-size: 3rem;
     }
+
+    .panel-card {
+        min-width: 150px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .container {
+        padding: 15px;
+    }
+
+    .game-title {
+        font-size: 2.8rem;
+    }
+
+    .panel-card h2 {
+        font-size: 1rem;
+    }
+
+    .score-display,
+    .level-display,
+    .lines-display {
+        font-size: 2.5rem;
+    }
 }
 
 @media (max-width: 768px) {
+    body {
+        overflow-y: auto;
+    }
+
+    .container {
+        padding: 10px;
+    }
+
     .game-title {
         font-size: 2.5rem;
         letter-spacing: 0.2em;
@@ -399,11 +482,85 @@ header {
 
     .side-panel {
         flex-direction: column;
+        max-width: 100%;
     }
 
-    #tetris-canvas {
-        width: 100%;
-        max-width: 300px;
-        height: auto;
+    .panel-card {
+        padding: 15px;
+    }
+
+    .panel-card h2 {
+        font-size: 0.9rem;
+        margin-bottom: 10px;
+    }
+
+    .score-display,
+    .level-display,
+    .lines-display {
+        font-size: 2rem;
+    }
+
+    .back-btn {
+        font-size: 0.9rem;
+        padding: 8px 16px;
+    }
+
+    .game-over-content {
+        padding: 30px 20px;
+    }
+
+    .game-over-content h2 {
+        font-size: 2rem;
+    }
+
+    .final-score {
+        font-size: 1.2rem;
+    }
+
+    .final-score span {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .game-title {
+        font-size: 2rem;
+        letter-spacing: 0.15em;
+    }
+
+    .panel-card {
+        padding: 12px;
+    }
+
+    .controls-info {
+        min-width: auto;
+    }
+
+    .key {
+        min-width: 70px;
+        font-size: 0.8rem;
+        padding: 5px 10px;
+    }
+
+    .action {
+        font-size: 0.8rem;
+    }
+
+    .btn-pause,
+    .btn-restart {
+        padding: 12px 24px;
+        font-size: 1rem;
+    }
+
+    .touch-btn {
+        min-width: 70px;
+        min-height: 50px;
+        font-size: 1.5rem;
+    }
+
+    .score-display,
+    .level-display,
+    .lines-display {
+        font-size: 1.8rem;
     }
 }
