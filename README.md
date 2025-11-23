@@ -227,7 +227,7 @@ Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más det
 
 **Vasco**
 
-- GitHub: [@tu-usuario](https://github.com/tu-usuario)
+- GitHub: [@vasco-giusep-dev](https://github.com/vasco-giusep-dev)
 
 ## 🙏 Agradecimientos
 
