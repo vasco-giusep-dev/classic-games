@@ -3,7 +3,7 @@
 // ========================================
 const COLS = 10;
 const ROWS = 20;
-const BLOCK_SIZE = 30;
+let BLOCK_SIZE = 30; // Dynamic, calculated based on canvas size
 const COLORS = [
     null,
     '#FF006E', // I - Pink
@@ -64,15 +64,109 @@ function init() {
     // Initialize board
     board = Array.from({ length: ROWS }, () => Array(COLS).fill(0));
 
+    // Setup responsive canvas
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
     // Event listeners
     document.addEventListener('keydown', handleKeyPress);
     document.getElementById('restart-btn').addEventListener('click', restart);
     document.getElementById('pause-btn').addEventListener('click', togglePause);
 
+    // Initialize touch controls for mobile devices
+    initTouchControls();
+
     // Start game
     nextPiece = createPiece();
     spawnPiece();
     update();
+}
+
+// ========================================
+// RESPONSIVE CANVAS SIZING
+// ========================================
+function resizeCanvas() {
+    const container = document.querySelector('.main-game');
+    const maxWidth = Math.min(window.innerWidth - 40, 400);
+    const maxHeight = Math.min(window.innerHeight - 200, 800);
+
+    // Calculate canvas size maintaining 1:2 aspect ratio
+    let canvasWidth, canvasHeight;
+
+    if (window.innerWidth <= 768) {
+        // Mobile: use most of the width
+        canvasWidth = Math.min(maxWidth, window.innerWidth * 0.9);
+        canvasHeight = canvasWidth * 2;
+
+        // Adjust if height is too large
+        if (canvasHeight > maxHeight) {
+            canvasHeight = maxHeight;
+            canvasWidth = canvasHeight / 2;
+        }
+    } else {
+        // Desktop: use fixed comfortable size
+        canvasWidth = 300;
+        canvasHeight = 600;
+    }
+
+    canvas.width = canvasWidth;
+    canvas.height = canvasHeight;
+    BLOCK_SIZE = canvasWidth / COLS;
+
+    // Redraw if game is active
+    if (currentPiece) {
+        draw();
+        drawNext();
+    }
+}
+
+// ========================================
+// TOUCH CONTROLS
+// ========================================
+function initTouchControls() {
+    // Check if device supports touch
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+    if (isTouchDevice) {
+        const controlsContainer = document.getElementById('mobile-controls');
+        if (controlsContainer) {
+            controlsContainer.style.display = 'flex';
+
+            // Add touch event listeners
+            document.getElementById('btn-left').addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                move(-1);
+                draw();
+            });
+
+            document.getElementById('btn-right').addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                move(1);
+                draw();
+            });
+
+            document.getElementById('btn-rotate').addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                rotate();
+                draw();
+            });
+
+            document.getElementById('btn-down').addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                if (drop()) {
+                    score += POINTS.SOFT_DROP;
+                    updateScore();
+                }
+                dropCounter = 0;
+                draw();
+            });
+
+            document.getElementById('btn-drop').addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                hardDrop();
+            });
+        }
+    }
 }
 
 // ========================================
