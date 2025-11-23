@@ -127,6 +127,7 @@ function update() {
     cpuPaddle.y = Math.max(0, Math.min(CANVAS_HEIGHT - cpuPaddle.height, cpuPaddle.y));
 
     // Procesar cada pelota
+    let scored = false;
     balls.forEach((ball, index) => {
         // Move ball
         ball.x += ball.speedX;
@@ -150,24 +151,19 @@ function update() {
         // Score points
         if (ball.x < 0) {
             cpuScore++;
-            updateScores();
-            checkWin();
-            balls.splice(index, 1); // Remover esta pelota
-            // Si no quedan pelotas, resetear
-            if (balls.length === 0) {
-                setTimeout(resetBall, 500);
-            }
+            scored = true;
         } else if (ball.x > CANVAS_WIDTH) {
             playerScore++;
-            updateScores();
-            checkWin();
-            balls.splice(index, 1); // Remover esta pelota
-            // Si no quedan pelotas, resetear
-            if (balls.length === 0) {
-                setTimeout(resetBall, 500);
-            }
+            scored = true;
         }
     });
+
+    // Si alguien anotó, actualizar y resetear todas las pelotas
+    if (scored) {
+        updateScores();
+        checkWin();
+        setTimeout(resetBall, 500);
+    }
 
     draw();
     requestAnimationFrame(update);
